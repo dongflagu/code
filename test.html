@@ -1,0 +1,88 @@
+<html lang="zh_CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>我的第一个网页</title>
+        <style>
+/* 把左右两块东西放到一排 */
+.box-total{
+    display: flex;
+    gap:30px; /*左右中间留出30px空隙*/
+}
+/*左边放文字的盒子*/
+.left-part{
+    flex:5;
+}
+/*右边放图片的盒子*/
+.right-part{
+    flex:5;
+}
+img{
+    width:100%;
+    height:70%;
+}
+</style>
+    </head>
+    <body>
+        <div class="box-total">
+        <div class="left-part"> 
+        
+        <h1>前端学习</h1>
+        <h2>第一章 HTML基础</h2>
+        <h3>第一节 写出自己的第一个网站</h3>
+        <hr>
+        <p>天气预报：今天天气很热，<span>下午3点温度最高</span><br><strong>出门一定要戴帽子</strong>,<em>（不然容易晒伤）</em></p>
+        <hr>
+        <ul>
+    <li>学习HTML</li>
+    <ol>
+    <li>新建index.html文件</li>
+    <li>写HTML代码</li>
+    <li>git提交推送到GitHub</li>
+</ol>
+
+    <li>学习CSS</li>
+    <li>学习JavaScript</li>
+</ul>
+    <hr>
+    <h3>点击下方文字进入我的github仓库</h3>
+    <a href="https://github.com/dongflagu/code" target="\_blank">进入</a>
+    <hr>
+    <table>
+        <tr>
+            <th>课程名称</th>
+            <td>数据结构</td>
+            <td>高等数学下</td>
+            <td>离散数学</td>
+        </tr> 
+        <tr>
+             <th>课程成绩</th>
+             <td>87</td>
+            <td>82</td>
+            <td>72</td>
+        </tr>  
+    </table>
+    <hr>
+    <form>
+    <input type="text" placeholder="请输入你的名字">
+    <input type="password" placeholder="请输入你的学号">
+    <textarea placeholder="在后面选择一个你最喜欢的城市，并在这里写下原因"></textarea>
+    <select>
+        <option>广州</option>
+        <option>深圳</option>
+        <option>珠海</option>
+        <option>中山</option>
+        <option>佛山</option>
+        <option>肇庆</option>
+    </select>
+    <button>提交</button>
+</form>
+<hr>
+<footer>版权所有 2026</footer>
+</div>   
+        <div class="right-part">
+    <img src="test.jpg" alt="前海石公园日落">
+    </div>
+    <hr>
+    </div>
+    </body>
+</html>
