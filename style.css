@@ -1,0 +1,106 @@
+ *{
+    box-sizing: border-box;
+}
+a{
+    font-size:18px;
+    text-decoration:none;
+    color:#7b2cbf;
+}
+a:hover{
+    color:#390066;
+    border-bottom:2px solid #390066;
+}
+body{
+    font-family:"Microsoft Yahei",sans‑serif;
+    background-color:rgb(232, 228, 222);
+    padding:10px;
+    font-size:17px;
+    line-height:1.7;
+}
+input,textarea,select{
+    padding:7px 10px;
+    border:1px solid #bbb;
+    border-radius:6px;
+    font-size:16px;
+    outline:none;
+}
+input:focus,textarea:focus,select:focus{
+    border-color:#3474d9;
+}
+button{
+    padding:7px 14px;
+    background:#3474d9;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{
+    background:#2057ad;
+}
+ h1{
+                color: blue;
+            }
+            h2{
+                color: rgb(255, 64, 0);
+            }
+            h3{
+                color: chocolate;
+            }
+            p{
+                color: indigo;
+                font-weight: 500;
+                font-size:large;
+            }
+            table{
+                width:90%;
+                font-size:20px;
+                color: rgb(108, 8, 202);
+            }
+            footer{
+            margin-top:10px;
+            font-size:15px;
+            color:#00bbbb;
+            }
+            ul{
+                color: crimson;
+            }
+.touxiang{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.touxiang img{
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius:50%;
+}
+.data{
+    flex:6;
+}
+.photo{
+    flex:4;
+}
+.box-total{
+    display: flex;
+    gap:30px; 
+}
+.left-part{
+    flex:6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+.left-part p{
+    color: rgb(42, 165, 118);
+    font-size: larger;
+}
+.right-part{
+    flex:5;
+}
+img{
+    width:100%;
+    max-height:700px;
+    object-fit:cover;
+    object-position:center bottom;
+}
