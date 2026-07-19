@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref,watch,onMounted, reactive,computed } from 'vue'
+onMounted(() => {
+  console.log("页面初始化成功")
+})
 const name="电子科技大学中山学院教务系统"
 const major="计算机科学与技术"
 const math=82
@@ -11,9 +14,11 @@ const show1= ref(false)
 const show2= ref(false)
 const ans =ref(false)
 const ans1 =ref(false)
-let inputName = "";
-let inputId = "";
-let selectCity = "";
+const inputName=ref("")
+const form=reactive({
+  inputId : "",
+  selectCity : ""
+})
 const titleColor = "#ff4500";
 const titleFontSize = 20;
 const boxActiveFlag = true;
@@ -22,21 +27,26 @@ const formCache = ref({
   userId: "",
   city: ""
 })
+watch(inputName, (newVal, oldVal) => {
+  if(newVal.length > 6){
+    alert("姓名长度过长！")
+  }
+})
 const submitForm = () => {
-  if(inputName.trim() === ""){
+  if(inputName.value.trim() === ""){
     alert("姓名输入框不能为空！");
     return;
   }
-  if(inputId.length !== 8){
+  if(form.inputId.length !== 8){
     alert("学号必须是8位数字！");
     return;
   }
-  alert(`登录成功！姓名：${inputName}，学号：${inputId}，校区：${selectCity}`);
+  alert(`登录成功！姓名：${inputName.value}，学号：${form.inputId}，校区：${form.selectCity}`);
   ans.value=true
   ans1.value=true
   formCache.value.userName = inputName
-  formCache.value.userId = inputId
-  formCache.value.city = selectCity
+  formCache.value.userId = form.inputId
+  formCache.value.city = form.selectCity
   setTimeout(()=>{
     ans1.value = false
   },3000)
@@ -64,12 +74,13 @@ const toggleScoreBox2 = () => {
 }
 .normal-box{
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #1e54de;
 }
 .active-box{
   padding: 10px;
+  color:blue;
   border: 2px solid #409eff;
-  background-color: #f0f7ff;
+  background-color: #a4cca5;
 }
 button{
   padding: 6px 14px;
@@ -86,7 +97,10 @@ h3{
 </style>
 
 <template>
-<div :class="boxclass">
+  <div
+  class="normal-box" 
+  :class="{ 'active-box': ans }"
+>
 <h3>{{name}}</h3>
 <div :title="major">悬浮查看专业</div>
 <p>总分:{{data+math}}</p>
@@ -112,9 +126,9 @@ h3{
     <label>姓名：</label>
     <input placeholder="请输入你的名字" v-model="inputName">
     <label>学号：</label>
-    <input placeholder="请输入你的学号" v-model="inputId">
+    <input placeholder="请输入你的学号" v-model="form.inputId">
     <label>选择校区：</label>
-    <select v-model="selectCity">
+    <select v-model="form.selectCity">
       <option value="">请选择校区</option>
       <option value="中山学院">中山学院</option>
     </select>
