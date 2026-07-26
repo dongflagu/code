@@ -1,5 +1,8 @@
 <script setup>
 import { ref,watch,onMounted, reactive,computed } from 'vue'
+import ScoreBlock from './components/ScoreBlock.vue'
+import LoginBlock from './components/LoginBlock.vue'
+
 onMounted(() => {
   console.log("页面初始化成功")
 })
@@ -9,59 +12,32 @@ const math=82
 const data=87
 const score=3.32
 const book="/book1.jpg"
-const boxclass="page-box"
-const show1= ref(false)
-const show2= ref(false)
-const ans =ref(false)
-const ans1 =ref(false)
-const inputName=ref("")
-const form=reactive({
-  inputId : "",
-  selectCity : ""
-})
 const titleColor = "#ff4500";
 const titleFontSize = 20;
-const boxActiveFlag = true;
+const ans =ref(false)
+const ans1 =ref(false)
 const formCache = ref({
   userName: "",
   userId: "",
   city: ""
 })
-watch(inputName, (newVal, oldVal) => {
-  if(newVal.length > 6){
-    alert("姓名长度过长！")
-  }
-})
-const submitForm = () => {
-  if(inputName.value.trim() === ""){
-    alert("姓名输入框不能为空！");
-    return;
-  }
-  if(form.inputId.length !== 8){
-    alert("学号必须是8位数字！");
-    return;
-  }
-  alert(`登录成功！姓名：${inputName.value}，学号：${form.inputId}，校区：${form.selectCity}`);
-  ans.value=true
-  ans1.value=true
-  formCache.value.userName = inputName
-  formCache.value.userId = form.inputId
-  formCache.value.city = form.selectCity
-  setTimeout(()=>{
-    ans1.value = false
-  },3000)
-};
 const courseList = [
   { id: 1, name: "高等数学上", score: 86 },
   { id: 2, name: "程序设计基础", score: 90 },
   { id: 3, name: "程序设计实践", score: 92 },
   { id: 4, name: "计算机导论", score: 70 }
 ];
-const toggleScoreBox1 = () => {
-  show1.value = !show1.value;
-};
-const toggleScoreBox2 = () => {
-  show2.value = !show2.value;
+
+const handleLogin = (info)=>{
+  alert(`登录成功！姓名：${info.userName}，学号：${info.userId}，校区：${info.city}`);
+  ans.value=true
+  ans1.value=true
+  formCache.value.userName = info.userName
+  formCache.value.userId = info.userId
+  formCache.value.city = info.city
+  setTimeout(()=>{
+    ans1.value = false
+  },3000)
 };
 </script>
 
@@ -103,36 +79,14 @@ h3{
 >
 <h3>{{name}}</h3>
 <div :title="major">悬浮查看专业</div>
-<p>总分:{{data+math}}</p>
-<div>
-    <p v-if="math >= 90">高数评级：优秀</p>
-    <p v-else-if="math >= 80">高数评级：良好</p>
-    <p v-else-if="math >= 60">高数评级：及格</p>
-    <p v-else>高数评级：不及格</p>
-  </div>
-<p>数据结构是否及格：{{ data >= 60 ? "及格" : "不及格" }}</p>
-<button @click="toggleScoreBox1">查看绩点</button>
-<button @click="toggleScoreBox2">上学期成绩</button>
-<br>
-<div v-show="show1">
-    <p>绩点：{{score}}</p>
-  </div>
-  <div v-if="show2">
-    <div v-for="(item, index) in courseList" :key="item.id">
-      <span>第{{ index + 1 }}门课：</span>
-      <span>{{ item.name }} &nbsp;&nbsp;分数：{{ item.score }} 分</span>
-      </div>
-      </div>
-    <label>姓名：</label>
-    <input placeholder="请输入你的名字" v-model="inputName">
-    <label>学号：</label>
-    <input placeholder="请输入你的学号" v-model="form.inputId">
-    <label>选择校区：</label>
-    <select v-model="form.selectCity">
-      <option value="">请选择校区</option>
-      <option value="中山学院">中山学院</option>
-    </select>
-  <button @click="submitForm">登录</button>
+<ScoreBlock 
+  :math="math"
+  :data="data"
+  :score="score"
+  :courseList="courseList"
+/>
+<LoginBlock @loginSubmit="handleLogin"/>
+
   <div v-if="ans1">
     <p>登录成功!(3s后消失)</p>  
   </div>
