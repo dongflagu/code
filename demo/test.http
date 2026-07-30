@@ -1,0 +1,26 @@
+# 查询任务列表
+GET http://localhost:8081/api/tasks
+
+###
+# 新增任务
+POST http://localhost:8081/api/tasks
+Content-Type: application/json
+
+{
+  "title": "学习接口测试",
+  "status": "进行中"
+}
+
+###
+# 修改任务
+PUT http://localhost:8081/api/tasks/2
+Content-Type: application/json
+
+{
+  "title": "学习接口",
+  "status": "进行中"
+}
+
+###
+# 删除任务
+DELETE http://localhost:8081/api/tasks/3
