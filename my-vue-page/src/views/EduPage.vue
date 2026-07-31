@@ -56,7 +56,6 @@
   </div>
   <br>
 <img :src="book" style="width:500px;" alt="香山书院">
-
 <p style="color:green;">{{ route.query.welcomeMsg }}</p>
 </div>
 </template>

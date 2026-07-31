@@ -5,11 +5,9 @@ public class Result<T> {
     private String msg;
     private T data;
 
-    // 无参构造必须保留
     public Result() {
     }
 
-    // 成功响应，携带数据
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>();
         result.setCode(200);
@@ -18,12 +16,10 @@ public class Result<T> {
         return result;
     }
 
-    // 成功响应，不带数据（新增、删除场景）
     public static <T> Result<T> success() {
         return success(null);
     }
 
-    // 失败响应
     public static <T> Result<T> fail(String msg) {
         Result<T> result = new Result<>();
         result.setCode(500);
@@ -32,7 +28,6 @@ public class Result<T> {
         return result;
     }
 
-    // getter 和 setter 一定要写！JSON序列化需要！
     public Integer getCode() {
         return code;
     }
