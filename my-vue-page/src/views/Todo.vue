@@ -48,7 +48,6 @@
       </el-table-column>
     </el-table>
 
-    <!-- 编辑弹窗 -->
     <el-dialog v-model="editVisible" title="编辑任务" width="400px">
       <el-input v-model="editName" placeholder="修改任务名称" />
       <template #footer>
@@ -69,7 +68,7 @@ const taskList = ref([
   { id: 2, name: 'CSS', done: false },
   { id: 3, name: 'JS', done: false },
   { id: 4, name: 'VUE', done: false },
-  { id: 5, name: 'JAVESE', done: false },
+  { id: 5, name: 'JAVASE', done: false },
   { id: 6, name: 'MYSQL', done: false }
 ])
 
@@ -107,7 +106,7 @@ const addTask = () => {
 
 const deleteTask = (id) => {
   ElMessageBox.confirm('确定删除这条任务吗？', '提示', {
-    type: 'warning'
+    type: 'success'
   }).then(() => {
     taskList.value = taskList.value.filter(item => item.id !== id)
     ElMessage.success('删除成功')
